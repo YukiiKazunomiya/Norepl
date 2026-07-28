@@ -1,150 +1,1932 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lucy 💖</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="YukiiKazunomiya — Software engineer building performant web applications. Open to opportunities." />
+  <meta name="theme-color" content="#0a0a0a" />
+  <meta name="author" content="YukiiKazunomiya" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="YukiiKazunomiya — Developer" />
+  <meta property="og:description" content="Software engineer building performant web applications. Open to opportunities." />
+  <meta property="og:url" content="https://yukiikazunomiya.vercel.app" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="YukiiKazunomiya — Developer" />
+  <meta name="twitter:description" content="Software engineer building performant web applications." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>" />
+  <title>YukiiKazunomiya</title>
 
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap');
-  body {
-    margin: 0;
-    font-family: 'Quicksand', sans-serif;
-    color: #fff;
-    background: linear-gradient(135deg, #7E37F9, #E568C4);
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
-  .card {
-    background: rgba(255,255,255,0.1);
-    backdrop-filter: blur(8px);
-    border-radius: 25px;
-    text-align: center;
-    padding: 40px 30px;
-    width: 340px;
-    box-shadow: 0 0 30px rgba(0,0,0,0.3);
-    margin-top: 60px;
-  }
+  <style>
+    /* ═══════════════════════════════════════════
+       RESET
+    ═══════════════════════════════════════════ */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+      scrollbar-width: thin;
+      scrollbar-color: #222 #0a0a0a;
+    }
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: #0a0a0a; }
+    ::-webkit-scrollbar-thumb { background: #1f1f1f; border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: #2a2a2a; }
 
-  .avatar {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    border: 4px solid #fff;
-    margin-bottom: 15px;
-  }
+    /* ═══════════════════════════════════════════
+       DESIGN TOKENS
+    ═══════════════════════════════════════════ */
+    :root {
+      --bg:         #0a0a0a;
+      --bg-raised:  #111111;
+      --bg-card:    #0f0f0f;
+      --bg-hover:   #161616;
+      --bg-overlay: rgba(10, 10, 10, 0.92);
 
-  h1 {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-  }
+      --border:     #1a1a1a;
+      --border-h:   #2a2a2a;
+      --border-sub: #141414;
 
-  p {
-    font-size: 0.9rem;
-    opacity: 0.9;
-    line-height: 1.4;
-  }
+      --text:       #fafafa;
+      --text-2:     #a0a0a0;
+      --text-3:     #555;
+      --text-4:     #333;
 
-  hr {
-    width: 80%;
-    border: none;
-    height: 1px;
-    background: rgba(255,255,255,0.2);
-    margin: 30px 0;
-  }
+      --accent:     #e8e8e8;
+      --green:      #22c55e;
+      --yellow:     #eab308;
+      --red:        #ef4444;
+      --blue:       #3b82f6;
 
-  .playlist-section {
-    text-align: center;
-    margin-bottom: 60px;
-  }
+      --font:       'Inter', system-ui, -apple-system, sans-serif;
+      --mono:       'JetBrains Mono', 'Fira Code', monospace;
 
-  .playlist-section h2 {
-    font-size: 1.3rem;
-    margin-bottom: 20px;
-    text-shadow: 0 0 8px rgba(0,0,0,0.4);
-  }
+      --ease:       cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-out:   cubic-bezier(0, 0, 0.2, 1);
+      --dur:        200ms;
+      --dur-slow:   400ms;
 
-  .playlist {
-    margin-bottom: 30px;
-  }
+      --max:        720px;
+      --r:          10px;
+      --r-sm:       6px;
+    }
 
-  iframe {
-    border-radius: 12px;
-  }
+    /* ═══════════════════════════════════════════
+       LIGHT THEME
+    ═══════════════════════════════════════════ */
+    [data-theme="light"] {
+      --bg:         #f5f5f5;
+      --bg-raised:  #ffffff;
+      --bg-card:    #fafafa;
+      --bg-hover:   #eeeeee;
+      --bg-overlay: rgba(245, 245, 245, 0.92);
 
-  footer {
-    font-size: 0.8rem;
-    opacity: 0.8;
-    margin-bottom: 20px;
-  }
-</style>
+      --border:     #e0e0e0;
+      --border-h:   #cccccc;
+      --border-sub: #eaeaea;
+
+      --text:       #111111;
+      --text-2:     #555555;
+      --text-3:     #888888;
+      --text-4:     #bbbbbb;
+
+      --accent:     #222222;
+    }
+    [data-theme="light"] body::after { opacity: 0.015; }
+    html[data-theme="light"] { scrollbar-color: #ccc #f5f5f5; }
+    [data-theme="light"] ::-webkit-scrollbar-track { background: #f5f5f5; }
+    [data-theme="light"] ::-webkit-scrollbar-thumb { background: #ddd; }
+    [data-theme="light"] ::-webkit-scrollbar-thumb:hover { background: #ccc; }
+    [data-theme="light"] ::selection {
+      background: rgba(0, 0, 0, 0.1);
+      color: var(--text);
+    }
+    [data-theme="light"] .cursor-dot {
+      background: var(--text);
+    }
+    [data-theme="light"] .cursor-dot.hovering {
+      background: rgba(0, 0, 0, 0.06);
+      border-color: rgba(0, 0, 0, 0.12);
+    }
+
+    /* ═══════════════════════════════════════════
+       THEME TOGGLE BUTTON
+    ═══════════════════════════════════════════ */
+    .theme-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: var(--r-sm);
+      border: 1px solid var(--border-h);
+      background: var(--bg-hover);
+      color: var(--text-2);
+      cursor: pointer;
+      transition: color var(--dur) var(--ease), background var(--dur) var(--ease), border-color var(--dur) var(--ease);
+      flex-shrink: 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .theme-toggle:hover {
+      color: var(--text);
+      background: rgba(255,255,255,0.04);
+      border-color: var(--border-h);
+    }
+    [data-theme="light"] .theme-toggle:hover {
+      background: rgba(0,0,0,0.04);
+    }
+    .theme-toggle svg {
+      width: 15px;
+      height: 15px;
+      transition: transform 0.4s var(--ease), opacity 0.3s;
+      position: absolute;
+    }
+    .theme-toggle .icon-sun {
+      opacity: 0;
+      transform: rotate(-90deg) scale(0.5);
+    }
+    .theme-toggle .icon-moon {
+      opacity: 1;
+      transform: rotate(0deg) scale(1);
+    }
+    [data-theme="light"] .theme-toggle .icon-sun {
+      opacity: 1;
+      transform: rotate(0deg) scale(1);
+    }
+    [data-theme="light"] .theme-toggle .icon-moon {
+      opacity: 0;
+      transform: rotate(90deg) scale(0.5);
+    }
+
+    /* ═══════════════════════════════════════════
+       BASE
+    ═══════════════════════════════════════════ */
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+      cursor: default;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    strong { font-weight: 600; }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; }
+
+    ::selection {
+      background: rgba(250, 250, 250, 0.12);
+      color: var(--text);
+    }
+
+    /* ═══════════════════════════════════════════
+       GRAIN OVERLAY
+    ═══════════════════════════════════════════ */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      pointer-events: none;
+      opacity: 0.025;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      background-size: 128px;
+    }
+
+    /* ═══════════════════════════════════════════
+       CUSTOM CURSOR
+    ═══════════════════════════════════════════ */
+    .cursor-dot {
+      position: fixed;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--text);
+      pointer-events: none;
+      z-index: 10000;
+      opacity: 0;
+      transition: width 0.3s var(--ease), height 0.3s var(--ease), opacity 0.3s, background 0.3s;
+      transform: translate(-50%, -50%);
+      mix-blend-mode: difference;
+    }
+    .cursor-dot.visible { opacity: 1; }
+    .cursor-dot.hovering {
+      width: 40px;
+      height: 40px;
+      background: rgba(250, 250, 250, 0.08);
+      mix-blend-mode: normal;
+      border: 1px solid rgba(250, 250, 250, 0.15);
+    }
+
+    @media (hover: none), (pointer: coarse) {
+      .cursor-dot { display: none !important; }
+    }
+
+    /* ═══════════════════════════════════════════
+       LAYOUT
+    ═══════════════════════════════════════════ */
+    .wrap {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ═══════════════════════════════════════════
+       NAV
+    ═══════════════════════════════════════════ */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      background: var(--bg-overlay);
+      backdrop-filter: blur(16px) saturate(1.2);
+      -webkit-backdrop-filter: blur(16px) saturate(1.2);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .nav-logo {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.02em;
+    }
+    .nav-badge {
+      padding: 2px 7px;
+      border-radius: 4px;
+      background: var(--bg-hover);
+      border: 1px solid var(--border);
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--text-3);
+      font-weight: 500;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+    }
+    .nav-link {
+      padding: 6px 12px;
+      border-radius: var(--r-sm);
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--text-2);
+      transition: color var(--dur) var(--ease), background var(--dur) var(--ease);
+      position: relative;
+    }
+    .nav-link:hover { color: var(--text); background: rgba(255,255,255,0.04); }
+    .nav-link.active { color: var(--text); }
+    .nav-kbd {
+      display: none;
+      margin-left: 6px;
+      padding: 1px 5px;
+      border-radius: 3px;
+      font-family: var(--mono);
+      font-size: 10px;
+      border: 1px solid var(--border);
+      color: var(--text-4);
+      line-height: 1.4;
+    }
+    @media (min-width: 640px) {
+      .nav-kbd { display: inline; }
+    }
+
+    /* ═══════════════════════════════════════════
+       MAIN
+    ═══════════════════════════════════════════ */
+    main { padding: 64px 0 100px; }
+
+    /* ═══════════════════════════════════════════
+       SECTIONS
+    ═══════════════════════════════════════════ */
+    .section { margin-bottom: 72px; }
+
+    /* ═══════════════════════════════════════════
+       HEADINGS
+    ═══════════════════════════════════════════ */
+    .heading {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-4);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .heading::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ═══════════════════════════════════════════
+       DIVIDER
+    ═══════════════════════════════════════════ */
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 56px 0;
+    }
+
+    /* ═══════════════════════════════════════════
+       HERO / PROFILE
+    ═══════════════════════════════════════════ */
+    .hero {
+      margin-bottom: 72px;
+    }
+    .hero-top {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      margin-bottom: 24px;
+    }
+    .hero-avatar {
+      position: relative;
+      flex-shrink: 0;
+    }
+    .hero-avatar img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--border);
+      background: var(--bg-raised);
+      transition: border-color 0.3s;
+    }
+    .hero-avatar:hover img {
+      border-color: var(--border-h);
+    }
+    .status-dot {
+      position: absolute;
+      bottom: 4px;
+      right: 4px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      border: 3px solid var(--bg);
+      background: var(--text-4);
+      transition: background 0.3s;
+    }
+    .status-dot.online  { background: var(--green); box-shadow: 0 0 8px rgba(34,197,94,0.3); }
+    .status-dot.idle    { background: var(--yellow); }
+    .status-dot.dnd     { background: var(--red); }
+    .status-dot.offline { background: var(--text-4); }
+
+    .hero-body { flex: 1; min-width: 0; }
+
+    .hero-name {
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      color: var(--text);
+      line-height: 1.1;
+      margin-bottom: 6px;
+    }
+
+    .hero-tagline {
+      font-size: 15px;
+      color: var(--text-2);
+      margin-bottom: 6px;
+      min-height: 1.6em;
+    }
+    .hero-tagline .cursor-blink {
+      display: inline-block;
+      width: 2px;
+      height: 1em;
+      background: var(--text-2);
+      margin-left: 2px;
+      vertical-align: text-bottom;
+      animation: blink 1s step-end infinite;
+    }
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+
+    .hero-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--text-3);
+      padding: 4px 0;
+    }
+    .hero-status-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--text-4);
+      flex-shrink: 0;
+    }
+    .hero-status-dot.online  { background: var(--green); }
+    .hero-status-dot.idle    { background: var(--yellow); }
+    .hero-status-dot.dnd     { background: var(--red); }
+
+    .hero-bio {
+      font-size: 14px;
+      color: var(--text-2);
+      line-height: 1.8;
+      max-width: 520px;
+      margin-top: 20px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 20px;
+    }
+    .hero-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      border-radius: var(--r-sm);
+      font-size: 13px;
+      font-weight: 500;
+      transition: all var(--dur) var(--ease);
+      border: 1px solid var(--border);
+      color: var(--text-2);
+      background: transparent;
+    }
+    .hero-btn:hover {
+      color: var(--text);
+      background: rgba(255,255,255,0.03);
+      border-color: var(--border-h);
+    }
+    .hero-btn svg { width: 14px; height: 14px; opacity: 0.6; }
+    .hero-btn-primary {
+      background: var(--text);
+      color: var(--bg);
+      border-color: var(--text);
+    }
+    .hero-btn-primary:hover {
+      background: #ddd;
+      color: var(--bg);
+      border-color: #ddd;
+    }
+
+    /* ═══════════════════════════════════════════
+       NOW STRIP
+    ═══════════════════════════════════════════ */
+    .now-strip {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 18px;
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      background: var(--bg-card);
+      font-family: var(--mono);
+      font-size: 13px;
+      color: var(--text-2);
+      margin-bottom: 20px;
+      gap: 12px;
+    }
+    .now-left {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      flex-shrink: 0;
+    }
+    .now-time {
+      color: var(--text);
+      font-weight: 500;
+    }
+    .now-sep {
+      color: var(--text-4);
+      margin: 0 10px;
+    }
+    .now-date { color: var(--text-3); }
+    .now-activity {
+      color: var(--text-3);
+      font-size: 12px;
+      text-align: right;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      min-width: 0;
+    }
+
+    /* ═══════════════════════════════════════════
+       INFO ROWS
+    ═══════════════════════════════════════════ */
+    .info-grid {
+      display: grid;
+      gap: 0;
+    }
+    .info-row {
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 14px;
+    }
+    .info-row:last-child { border-bottom: none; }
+    .info-key {
+      min-width: 110px;
+      color: var(--text-4);
+      font-family: var(--mono);
+      font-size: 12px;
+      flex-shrink: 0;
+      text-transform: lowercase;
+    }
+    .info-val { color: var(--text-2); }
+    .info-val strong { color: var(--text); font-weight: 500; }
+
+    /* ═══════════════════════════════════════════
+       STACK
+    ═══════════════════════════════════════════ */
+    .stack-group { margin-bottom: 12px; }
+    .stack-group:last-child { margin-bottom: 0; }
+    .stack-label {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--text-4);
+      margin-bottom: 8px;
+      text-transform: lowercase;
+    }
+    .stack-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .stack-tag {
+      padding: 5px 12px;
+      border: 1px solid var(--border);
+      border-radius: var(--r-sm);
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--text-2);
+      background: transparent;
+      transition: border-color var(--dur), color var(--dur), background var(--dur);
+    }
+    .stack-tag:hover {
+      border-color: var(--border-h);
+      color: var(--text);
+      background: rgba(255,255,255,0.02);
+    }
+
+    /* ═══════════════════════════════════════════
+       PROJECTS
+    ═══════════════════════════════════════════ */
+    .projects-grid {
+      display: grid;
+      gap: 12px;
+    }
+    .project-card {
+      position: relative;
+      padding: 24px;
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      background: var(--bg-card);
+      transition: border-color 0.3s var(--ease), transform 0.3s var(--ease);
+      overflow: hidden;
+    }
+    .project-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: var(--r);
+      opacity: 0;
+      transition: opacity 0.4s;
+      background: radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255,255,255,0.03), transparent 40%);
+      pointer-events: none;
+    }
+    .project-card:hover {
+      border-color: var(--border-h);
+    }
+    .project-card:hover::before { opacity: 1; }
+    .project-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    .project-name {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text);
+      letter-spacing: -0.01em;
+    }
+    .project-arrow {
+      color: var(--text-4);
+      font-size: 14px;
+      transition: color var(--dur), transform var(--dur) var(--ease);
+      flex-shrink: 0;
+      margin-top: 3px;
+    }
+    .project-card:hover .project-arrow {
+      color: var(--text-2);
+      transform: translate(2px, -2px);
+    }
+    .project-desc {
+      font-size: 13px;
+      color: var(--text-3);
+      line-height: 1.7;
+      margin-bottom: 16px;
+    }
+    .project-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+    .project-tag {
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--text-4);
+      border: 1px solid var(--border-sub);
+    }
+    .project-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--text-4);
+      flex-shrink: 0;
+    }
+    .project-status-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--green);
+    }
+    .project-status-dot.archived { background: var(--text-4); }
+
+    /* ═══════════════════════════════════════════
+       EXPERIENCE / TIMELINE
+    ═══════════════════════════════════════════ */
+    .timeline {
+      position: relative;
+      padding-left: 24px;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 5px;
+      top: 8px;
+      bottom: 8px;
+      width: 1px;
+      background: var(--border);
+    }
+    .timeline-item {
+      position: relative;
+      padding-bottom: 32px;
+    }
+    .timeline-item:last-child { padding-bottom: 0; }
+    .timeline-dot {
+      position: absolute;
+      left: -24px;
+      top: 6px;
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      border: 2px solid var(--border-h);
+      background: var(--bg);
+      transition: border-color 0.3s;
+    }
+    .timeline-item:first-child .timeline-dot {
+      border-color: var(--text-2);
+      background: var(--bg-raised);
+    }
+    .timeline-date {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--text-4);
+      margin-bottom: 4px;
+      text-transform: lowercase;
+    }
+    .timeline-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 4px;
+      letter-spacing: -0.01em;
+    }
+    .timeline-desc {
+      font-size: 13px;
+      color: var(--text-3);
+      line-height: 1.7;
+    }
+
+    /* ═══════════════════════════════════════════
+       MUSIC
+    ═══════════════════════════════════════════ */
+    .music-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .music-item {
+      border-radius: var(--r);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      transition: border-color 0.3s;
+    }
+    .music-item:hover { border-color: var(--border-h); }
+    .music-label {
+      padding: 12px 16px 10px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-4);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .music-label .eq-bars {
+      display: inline-flex;
+      align-items: flex-end;
+      gap: 2px;
+      height: 12px;
+    }
+    .music-label .eq-bar {
+      width: 3px;
+      border-radius: 1px;
+      background: var(--green);
+      animation: eq 1.2s ease-in-out infinite;
+    }
+    .music-label .eq-bar:nth-child(1) { height: 40%; animation-delay: 0s; }
+    .music-label .eq-bar:nth-child(2) { height: 70%; animation-delay: 0.2s; }
+    .music-label .eq-bar:nth-child(3) { height: 50%; animation-delay: 0.4s; }
+    @keyframes eq {
+      0%, 100% { transform: scaleY(0.3); }
+      50% { transform: scaleY(1); }
+    }
+    .music-item iframe { display: block; }
+
+    /* ═══════════════════════════════════════════
+       CONNECT / LINKS
+    ═══════════════════════════════════════════ */
+    .link-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 14px;
+      color: var(--text-2);
+      transition: color var(--dur);
+      cursor: pointer;
+    }
+    .link-item:last-child { border-bottom: none; }
+    .link-item:hover { color: var(--text); }
+    .link-item:hover .link-arrow { opacity: 1; transform: translate(2px, -2px); }
+    .link-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .link-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: var(--r-sm);
+      background: var(--bg-hover);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: border-color var(--dur);
+    }
+    .link-item:hover .link-icon { border-color: var(--border-h); }
+    .link-icon svg { width: 16px; height: 16px; color: var(--text-3); }
+    .link-text {}
+    .link-platform {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text);
+      display: block;
+      line-height: 1.3;
+    }
+    .link-handle {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--text-4);
+      display: block;
+    }
+    .link-arrow {
+      font-size: 13px;
+      color: var(--text-4);
+      opacity: 0;
+      transition: opacity var(--dur), transform var(--dur) var(--ease);
+    }
+
+    /* ═══════════════════════════════════════════
+       FOOTER
+    ═══════════════════════════════════════════ */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 0;
+    }
+    .footer-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .footer-copy {
+      font-size: 13px;
+      color: var(--text-4);
+    }
+    .footer-copy span {
+      color: var(--text-3);
+    }
+    .footer-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .footer-meta {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--text-4);
+    }
+    .footer-top-btn {
+      padding: 4px 10px;
+      border-radius: var(--r-sm);
+      font-size: 12px;
+      color: var(--text-4);
+      border: 1px solid var(--border);
+      transition: all var(--dur);
+      background: transparent;
+    }
+    .footer-top-btn:hover {
+      color: var(--text-3);
+      border-color: var(--border-h);
+    }
+
+    /* ═══════════════════════════════════════════
+       COMMAND PALETTE
+    ═══════════════════════════════════════════ */
+    .cmd-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 9000;
+      display: none;
+      align-items: flex-start;
+      justify-content: center;
+      padding-top: 20vh;
+      animation: cmdFadeIn 0.15s var(--ease);
+    }
+    .cmd-overlay.open { display: flex; }
+    @keyframes cmdFadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    .cmd-box {
+      width: 100%;
+      max-width: 480px;
+      border-radius: 12px;
+      border: 1px solid var(--border-h);
+      background: var(--bg-raised);
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.05);
+      animation: cmdSlideIn 0.2s var(--ease);
+    }
+    @keyframes cmdSlideIn {
+      from { opacity: 0; transform: scale(0.96) translateY(-8px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+    .cmd-input-wrap {
+      display: flex;
+      align-items: center;
+      padding: 0 16px;
+      border-bottom: 1px solid var(--border);
+    }
+    .cmd-input-wrap svg {
+      width: 16px;
+      height: 16px;
+      color: var(--text-3);
+      flex-shrink: 0;
+    }
+    .cmd-input {
+      width: 100%;
+      padding: 14px 12px;
+      font-size: 14px;
+      font-family: var(--font);
+      color: var(--text);
+      background: transparent;
+      border: none;
+      outline: none;
+    }
+    .cmd-input::placeholder { color: var(--text-4); }
+    .cmd-list {
+      padding: 8px;
+      max-height: 320px;
+      overflow-y: auto;
+    }
+    .cmd-group-label {
+      padding: 8px 8px 4px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-4);
+    }
+    .cmd-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: var(--r-sm);
+      font-size: 13px;
+      color: var(--text-2);
+      cursor: pointer;
+      transition: background 0.1s, color 0.1s;
+    }
+    .cmd-item:hover, .cmd-item.active {
+      background: rgba(255,255,255,0.04);
+      color: var(--text);
+    }
+    .cmd-item svg {
+      width: 15px;
+      height: 15px;
+      color: var(--text-3);
+      flex-shrink: 0;
+    }
+    .cmd-item-right {
+      margin-left: auto;
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--text-4);
+    }
+    .cmd-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 16px;
+      border-top: 1px solid var(--border);
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--text-4);
+    }
+    .cmd-footer kbd {
+      padding: 1px 5px;
+      border-radius: 3px;
+      border: 1px solid var(--border);
+      font-size: 10px;
+      margin: 0 2px;
+    }
+
+    /* ═══════════════════════════════════════════
+       ANIMATIONS
+    ═══════════════════════════════════════════ */
+    .fade {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.6s var(--ease-out), transform 0.6s var(--ease-out);
+    }
+    .fade.in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* stagger children */
+    .stagger > * {
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.4s var(--ease-out), transform 0.4s var(--ease-out);
+    }
+    .stagger.in > *:nth-child(1) { transition-delay: 0ms; opacity: 1; transform: none; }
+    .stagger.in > *:nth-child(2) { transition-delay: 60ms; opacity: 1; transform: none; }
+    .stagger.in > *:nth-child(3) { transition-delay: 120ms; opacity: 1; transform: none; }
+    .stagger.in > *:nth-child(4) { transition-delay: 180ms; opacity: 1; transform: none; }
+    .stagger.in > *:nth-child(5) { transition-delay: 240ms; opacity: 1; transform: none; }
+    .stagger.in > *:nth-child(6) { transition-delay: 300ms; opacity: 1; transform: none; }
+
+    /* ═══════════════════════════════════════════
+       TEXT LINK
+    ═══════════════════════════════════════════ */
+    .text-link {
+      color: var(--text);
+      text-decoration-line: underline;
+      text-decoration-color: var(--border-h);
+      text-underline-offset: 3px;
+      transition: text-decoration-color var(--dur);
+    }
+    .text-link:hover { text-decoration-color: var(--text-3); }
+
+    /* ═══════════════════════════════════════════
+       TOOLTIP
+    ═══════════════════════════════════════════ */
+    .tooltip-wrap {
+      position: relative;
+    }
+    .tooltip-wrap::after {
+      content: attr(data-tip);
+      position: absolute;
+      bottom: calc(100% + 6px);
+      left: 50%;
+      transform: translateX(-50%) translateY(4px);
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-family: var(--mono);
+      color: var(--text);
+      background: var(--bg-raised);
+      border: 1px solid var(--border-h);
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.15s, transform 0.15s;
+    }
+    .tooltip-wrap:hover::after {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* ═══════════════════════════════════════════
+       COPY FEEDBACK
+    ═══════════════════════════════════════════ */
+    .copy-toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(16px);
+      padding: 10px 20px;
+      border-radius: var(--r);
+      background: var(--bg-raised);
+      border: 1px solid var(--border-h);
+      color: var(--text);
+      font-size: 13px;
+      z-index: 8000;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s, transform 0.2s var(--ease);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+    }
+    .copy-toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* ═══════════════════════════════════════════
+       RESPONSIVE
+    ═══════════════════════════════════════════ */
+    @media (max-width: 640px) {
+      main { padding: 40px 0 64px; }
+      .hero-top { flex-direction: column; gap: 16px; }
+      .hero-avatar img { width: 64px; height: 64px; }
+      .hero-name { font-size: 22px; }
+      .hero-bio { margin-top: 16px; }
+      .music-grid { grid-template-columns: 1fr; }
+      .footer-inner { flex-direction: column; gap: 8px; text-align: center; }
+      .footer-right { gap: 10px; }
+      .info-key { min-width: 90px; }
+      .hero-actions { gap: 6px; }
+      .now-strip { flex-direction: column; gap: 8px; align-items: flex-start; }
+      .now-activity { text-align: left; }
+      .cmd-box { margin: 0 16px; }
+      .section { margin-bottom: 56px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .fade { opacity: 1; transform: none; transition: none; }
+      .stagger > * { opacity: 1; transform: none; transition: none; }
+      * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
+  </style>
 </head>
-
 <body>
-  <!-- 🌸 Profil Discord -->
-  <div class="card">
-    <h1>・—— ・ ✦ Yukii Profile ✦ ・—— ・</h1>
-    <img id="avatar" class="avatar" src="" alt="avatar">
-    <h3 id="username">Loading...</h3>
-    <p id="status">Mengambil status...</p>
-    <hr>
-    <p><i>“
-    🌸 Hi there! I'm Yukii 👋
-I'm a Front-End Developer who loves bringing ideas to life through clean, interactive, and modern web design! 💻✨”</i></p>
-  </div>
 
-  <!-- 🎵 Bagian Playlist -->
-  <div class="playlist-section">
-    <h2>✨ My Playlists ⋆｡°✩</h2>
+  <!-- Custom Cursor -->
+  <div class="cursor-dot" id="cursorDot"></div>
 
-    <div class="playlist">
-      <!-- playlist 1 -->
-      <iframe style="border-radius:12px"
-        src="https://open.spotify.com/embed/playlist/29EwhGloFCERN10OpB9SUd?si=KBRaPqdoSXe3321osdkL4Q"
-        width="320" height="380" frameborder="0"
-        allowfullscreen=""
-        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
-      </iframe>
+  <!-- Toast -->
+  <div class="copy-toast" id="toast"></div>
+
+  <!-- Nav -->
+  <nav class="nav" id="navbar">
+    <div class="nav-inner">
+      <div class="nav-left">
+        <span class="nav-logo">yukii.dev</span>
+        <span class="nav-badge">v2.0</span>
+      </div>
+      <div class="nav-links">
+        <a href="#about" class="nav-link">About</a>
+        <a href="#projects" class="nav-link">Projects</a>
+        <a href="#music" class="nav-link">Music</a>
+        <a href="#connect" class="nav-link">Connect</a>
+        <button class="nav-link" onclick="openCmd()" aria-label="Open command palette">
+          <span style="margin-right:2px">⌘</span>
+          <kbd class="nav-kbd">Ctrl K</kbd>
+        </button>
+        <span style="width:1px;height:20px;background:var(--border-h);margin:0 6px;flex-shrink:0;"></span>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode">
+          <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        </button>
+      </div>
     </div>
+  </nav>
 
-    <div class="playlist">
-      <!-- playlist 2 -->
-      <iframe style="border-radius:12px"
-        src="https://open.spotify.com/embed/track/3oEkrIfXfSh9zGnE7eBzSV?utm_source=generator"
-        width="320" height="380" frameborder="0"
-        allowfullscreen=""
-        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
-      </iframe>
+  <main>
+    <div class="wrap">
+
+      <!-- ──── HERO ──── -->
+      <div class="hero fade" id="heroBlock">
+        <div class="hero-top">
+          <div class="hero-avatar">
+            <img id="avatar" src="" alt="YukiiKazunomiya's avatar" width="80" height="80" />
+            <span class="status-dot" id="statusDot"></span>
+          </div>
+          <div class="hero-body">
+            <h1 class="hero-name" id="username">YukiiKazunomiya</h1>
+            <p class="hero-tagline" id="tagline">
+              <span id="typeTarget"></span><span class="cursor-blink"></span>
+            </p>
+            <span class="hero-status">
+              <span class="hero-status-dot" id="statusDot2"></span>
+              <span id="discordStatus">—</span>
+            </span>
+          </div>
+        </div>
+
+        <p class="hero-bio">
+          Software engineer focused on building performant web applications. I care about clean code, thoughtful design, and shipping products that people actually use. Currently open to new opportunities and interesting collaborations.
+        </p>
+
+        <div class="hero-actions">
+          <a href="mailto:yukiikazunomiya@gmail.com" class="hero-btn hero-btn-primary">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            Get in touch
+          </a>
+          <a href="https://github.com/YukiiKazunomiya" target="_blank" rel="noopener" class="hero-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+            GitHub
+          </a>
+          <button class="hero-btn" onclick="copyEmail()" id="copyEmailBtn">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            Copy email
+          </button>
+        </div>
+      </div>
+
+      <!-- ──── NOW STRIP ──── -->
+      <div class="now-strip fade" id="nowBlock">
+        <div class="now-left">
+          <span id="nowTime" class="now-time">--:--:--</span>
+          <span class="now-sep">·</span>
+          <span id="nowDate" class="now-date">—</span>
+        </div>
+        <span id="activityLine" class="now-activity">—</span>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- ──── ABOUT ──── -->
+      <section class="section fade" id="about">
+        <p class="heading">About</p>
+
+        <div class="info-grid" style="margin-bottom: 32px;">
+          <div class="info-row">
+            <span class="info-key">location</span>
+            <span class="info-val">Indonesia 🇮🇩</span>
+          </div>
+          <div class="info-row">
+            <span class="info-key">focus</span>
+            <span class="info-val">Web development, open source, creative tools</span>
+          </div>
+          <div class="info-row">
+            <span class="info-key">currently</span>
+            <span class="info-val">Building, learning, and shipping side projects</span>
+          </div>
+          <div class="info-row">
+            <span class="info-key">discord</span>
+            <span class="info-val" id="discordUser" style="font-family:var(--mono); font-size:13px;">—</span>
+          </div>
+        </div>
+
+        <p class="heading">Stack</p>
+        <div class="stack-group">
+          <p class="stack-label">// languages & core</p>
+          <div class="stack-row">
+            <span class="stack-tag">HTML</span>
+            <span class="stack-tag">CSS</span>
+            <span class="stack-tag">JavaScript</span>
+            <span class="stack-tag">Python</span>
+          </div>
+        </div>
+        <div class="stack-group" style="margin-top: 10px;">
+          <p class="stack-label">// tools & runtime</p>
+          <div class="stack-row">
+            <span class="stack-tag">Node.js</span>
+            <span class="stack-tag">Git</span>
+            <span class="stack-tag">VS Code</span>
+            <span class="stack-tag">Vercel</span>
+          </div>
+        </div>
+        <div class="stack-group" style="margin-top: 10px;">
+          <p class="stack-label">// exploring</p>
+          <div class="stack-row">
+            <span class="stack-tag">TypeScript</span>
+            <span class="stack-tag">React</span>
+            <span class="stack-tag">Next.js</span>
+          </div>
+        </div>
+      </section>
+
+      <div class="divider"></div>
+
+      <!-- ──── PROJECTS ──── -->
+      <section class="section fade" id="projects">
+        <p class="heading">Projects</p>
+        <div class="projects-grid stagger" id="projectsGrid">
+
+          <a href="https://github.com/YukiiKazunomiya" target="_blank" rel="noopener" class="project-card">
+            <div class="project-head">
+              <span class="project-name">yukii.dev</span>
+              <span class="project-arrow">↗</span>
+            </div>
+            <p class="project-desc">
+              Personal portfolio and bio page. Built with vanilla HTML, CSS, and JavaScript. Features Discord integration, Spotify embeds, and a command palette.
+            </p>
+            <div class="project-meta">
+              <div class="project-tags">
+                <span class="project-tag">HTML</span>
+                <span class="project-tag">CSS</span>
+                <span class="project-tag">JavaScript</span>
+              </div>
+              <span class="project-status">
+                <span class="project-status-dot"></span>
+                active
+              </span>
+            </div>
+          </a>
+
+          <a href="https://github.com/YukiiKazunomiya" target="_blank" rel="noopener" class="project-card">
+            <div class="project-head">
+              <span class="project-name">Discord Bot</span>
+              <span class="project-arrow">↗</span>
+            </div>
+            <p class="project-desc">
+              Custom Discord bot with moderation commands, music playback, and utility features for community management.
+            </p>
+            <div class="project-meta">
+              <div class="project-tags">
+                <span class="project-tag">Node.js</span>
+                <span class="project-tag">Discord.js</span>
+              </div>
+              <span class="project-status">
+                <span class="project-status-dot"></span>
+                active
+              </span>
+            </div>
+          </a>
+
+          <a href="https://github.com/YukiiKazunomiya" target="_blank" rel="noopener" class="project-card">
+            <div class="project-head">
+              <span class="project-name">Web Experiments</span>
+              <span class="project-arrow">↗</span>
+            </div>
+            <p class="project-desc">
+              Collection of creative coding experiments, UI components, and interactive demos exploring modern web APIs.
+            </p>
+            <div class="project-meta">
+              <div class="project-tags">
+                <span class="project-tag">JavaScript</span>
+                <span class="project-tag">CSS</span>
+                <span class="project-tag">Canvas</span>
+              </div>
+              <span class="project-status">
+                <span class="project-status-dot archived"></span>
+                wip
+              </span>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <div class="divider"></div>
+
+      <!-- ──── EXPERIENCE ──── -->
+      <section class="section fade" id="experience">
+        <p class="heading">Journey</p>
+        <div class="timeline">
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <p class="timeline-date">2024 — present</p>
+            <p class="timeline-title">Building & Shipping</p>
+            <p class="timeline-desc">
+              Working on web projects, contributing to open source, and constantly learning new technologies. Focused on building real products that solve real problems.
+            </p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <p class="timeline-date">2023</p>
+            <p class="timeline-title">Deep Dive into JavaScript</p>
+            <p class="timeline-desc">
+              Explored Node.js ecosystem, built Discord bots, and started building full-stack applications. Learned Git workflows and collaborative development.
+            </p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <p class="timeline-date">2022</p>
+            <p class="timeline-title">Started Web Development</p>
+            <p class="timeline-desc">
+              Began learning HTML, CSS, and JavaScript. Built first websites and discovered the passion for creating things on the web.
+            </p>
+          </div>
+
+        </div>
+      </section>
+
+      <div class="divider"></div>
+
+      <!-- ──── MUSIC ──── -->
+      <section class="section fade" id="music">
+        <p class="heading">Music</p>
+        <div class="music-grid">
+          <div class="music-item">
+            <p class="music-label">
+              Playlist
+            </p>
+            <iframe
+              src="https://open.spotify.com/embed/playlist/29EwhGloFCERN10OpB9SUd?si=KBRaPqdoSXe3321osdkL4Q&theme=0"
+              width="100%" height="352" frameborder="0"
+              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+              loading="lazy">
+            </iframe>
+          </div>
+          <div class="music-item">
+            <p class="music-label">
+              <span class="eq-bars">
+                <span class="eq-bar"></span>
+                <span class="eq-bar"></span>
+                <span class="eq-bar"></span>
+              </span>
+              Now playing
+            </p>
+            <iframe
+              src="https://open.spotify.com/embed/track/3oEkrIfXfSh9zGnE7eBzSV?utm_source=generator&theme=0"
+              width="100%" height="352" frameborder="0"
+              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+              loading="lazy">
+            </iframe>
+          </div>
+        </div>
+      </section>
+
+      <div class="divider"></div>
+
+      <!-- ──── CONNECT ──── -->
+      <section class="section fade" id="connect">
+        <p class="heading">Connect</p>
+        <div class="stagger" id="connectList">
+          <a href="https://github.com/YukiiKazunomiya" target="_blank" rel="noopener" class="link-item" id="link-github">
+            <div class="link-left">
+              <div class="link-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+              </div>
+              <div class="link-text">
+                <span class="link-platform">GitHub</span>
+                <span class="link-handle">@YukiiKazunomiya</span>
+              </div>
+            </div>
+            <span class="link-arrow">↗</span>
+          </a>
+
+          <a href="https://discord.com/users/1383415388804747269" target="_blank" rel="noopener" class="link-item" id="link-discord">
+            <div class="link-left">
+              <div class="link-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189z"/></svg>
+              </div>
+              <div class="link-text">
+                <span class="link-platform">Discord</span>
+                <span class="link-handle">YukiiKazunomiya</span>
+              </div>
+            </div>
+            <span class="link-arrow">↗</span>
+          </a>
+
+          <a href="https://instagram.com/YukiiKazunomiya" target="_blank" rel="noopener" class="link-item" id="link-instagram">
+            <div class="link-left">
+              <div class="link-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+              </div>
+              <div class="link-text">
+                <span class="link-platform">Instagram</span>
+                <span class="link-handle">@YukiiKazunomiya</span>
+              </div>
+            </div>
+            <span class="link-arrow">↗</span>
+          </a>
+
+          <a href="mailto:yukiikazunomiya@gmail.com" class="link-item" id="link-email">
+            <div class="link-left">
+              <div class="link-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+              </div>
+              <div class="link-text">
+                <span class="link-platform">Email</span>
+                <span class="link-handle">yukiikazunomiya@gmail.com</span>
+              </div>
+            </div>
+            <span class="link-arrow">↗</span>
+          </a>
+        </div>
+      </section>
+
     </div>
-  </div>
+  </main>
 
+  <!-- Footer -->
   <footer>
-    made with  by YukiiKazunomiya
+    <div class="footer-inner">
+      <p class="footer-copy">built by <span>YukiiKazunomiya</span></p>
+      <div class="footer-right">
+        <span class="footer-meta" id="footerYear">—</span>
+        <button class="footer-top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Scroll to top">↑ top</button>
+      </div>
+    </div>
   </footer>
 
-  <!-- Script Discord -->
+  <!-- ──── COMMAND PALETTE ──── -->
+  <div class="cmd-overlay" id="cmdOverlay" role="dialog" aria-modal="true" aria-label="Command palette">
+    <div class="cmd-box">
+      <div class="cmd-input-wrap">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input class="cmd-input" id="cmdInput" placeholder="Type a command…" autocomplete="off" spellcheck="false" />
+      </div>
+      <div class="cmd-list" id="cmdList">
+        <p class="cmd-group-label">Navigation</p>
+        <div class="cmd-item" data-action="scroll" data-target="#heroBlock">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7"/><path d="M9 22V12h6v10"/></svg>
+          Home
+        </div>
+        <div class="cmd-item" data-action="scroll" data-target="#about">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+          About
+        </div>
+        <div class="cmd-item" data-action="scroll" data-target="#projects">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+          Projects
+        </div>
+        <div class="cmd-item" data-action="scroll" data-target="#music">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+          Music
+        </div>
+        <div class="cmd-item" data-action="scroll" data-target="#connect">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+          Connect
+        </div>
+
+        <p class="cmd-group-label">Actions</p>
+        <div class="cmd-item" data-action="copy-email">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          Copy email address
+          <span class="cmd-item-right">yukiikazunomiya@gmail.com</span>
+        </div>
+        <div class="cmd-item" data-action="open-url" data-url="https://github.com/YukiiKazunomiya">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+          Open GitHub
+          <span class="cmd-item-right">↗</span>
+        </div>
+        <div class="cmd-item" data-action="open-url" data-url="https://discord.com/users/1383415388804747269">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189z"/></svg>
+          Open Discord
+          <span class="cmd-item-right">↗</span>
+        </div>
+      </div>
+      <div class="cmd-footer">
+        <span><kbd>↑↓</kbd> navigate · <kbd>↵</kbd> select</span>
+        <span><kbd>esc</kbd> close</span>
+      </div>
+    </div>
+  </div>
+
   <script>
-    const userId = "1383415388804747269"; // GANTI DENGAN ID KAMU
+    /* ═══════════════════════════════════════════
+       TYPING EFFECT
+    ═══════════════════════════════════════════ */
+    (() => {
+      const phrases = [
+        'Building things for the web.',
+        'Developer & Creator.',
+        'Open to new opportunities.',
+        'Clean code, thoughtful design.',
+        'Shipping products that work.'
+      ];
+      const target = document.getElementById('typeTarget');
+      let phraseIndex = 0;
+      let charIndex = 0;
+      let deleting = false;
+      let pauseTimer = null;
+
+      function type() {
+        const phrase = phrases[phraseIndex];
+        if (!deleting) {
+          charIndex++;
+          target.textContent = phrase.substring(0, charIndex);
+          if (charIndex === phrase.length) {
+            pauseTimer = setTimeout(() => { deleting = true; type(); }, 2200);
+            return;
+          }
+          setTimeout(type, 60 + Math.random() * 40);
+        } else {
+          charIndex--;
+          target.textContent = phrase.substring(0, charIndex);
+          if (charIndex === 0) {
+            deleting = false;
+            phraseIndex = (phraseIndex + 1) % phrases.length;
+            setTimeout(type, 400);
+            return;
+          }
+          setTimeout(type, 30);
+        }
+      }
+      setTimeout(type, 800);
+    })();
+
+    /* ═══════════════════════════════════════════
+       SCROLL FADE-IN (IntersectionObserver)
+    ═══════════════════════════════════════════ */
+    const fadeEls = document.querySelectorAll('.fade');
+    const fadeIO = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('in'), i * 80);
+          fadeIO.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.05, rootMargin: '0px 0px -40px 0px' });
+    fadeEls.forEach(el => fadeIO.observe(el));
+
+    /* stagger children */
+    const staggerEls = document.querySelectorAll('.stagger');
+    const staggerIO = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('in');
+          staggerIO.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.05 });
+    staggerEls.forEach(el => staggerIO.observe(el));
+
+    /* ═══════════════════════════════════════════
+       SMOOTH ANCHOR SCROLL
+    ═══════════════════════════════════════════ */
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const t = document.querySelector(a.getAttribute('href'));
+        if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+      });
+    });
+
+    /* ═══════════════════════════════════════════
+       CLOCK
+    ═══════════════════════════════════════════ */
+    function tick() {
+      const now = new Date();
+      const time = now.toLocaleTimeString('en-GB', { hour12: false });
+      const date = now.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' });
+      const el = document.getElementById('nowTime');
+      const dEl = document.getElementById('nowDate');
+      if (el) el.textContent = time;
+      if (dEl) dEl.textContent = date;
+    }
+    tick();
+    setInterval(tick, 1000);
+
+    /* ═══════════════════════════════════════════
+       FOOTER YEAR
+    ═══════════════════════════════════════════ */
+    const yrEl = document.getElementById('footerYear');
+    if (yrEl) yrEl.textContent = '© ' + new Date().getFullYear();
+
+    /* ═══════════════════════════════════════════
+       DISCORD / LANYARD
+    ═══════════════════════════════════════════ */
+    const UID = '1383415388804747269';
+    const STATUS_LABEL = { online: 'Online', idle: 'Idle', dnd: 'Do not disturb', offline: 'Offline' };
+
     async function loadDiscord() {
-      const res = await fetch(`https://api.lanyard.rest/v1/users/${userId}`);
-      const json = await res.json();
-      if (json.success) {
+      try {
+        const res = await fetch(`https://api.lanyard.rest/v1/users/${UID}`);
+        const json = await res.json();
+        if (!json.success) return;
+
         const d = json.data;
         const u = d.discord_user;
-        const avatar = u.avatar
-          ? `https://cdn.discordapp.com/avatars/${u.id}/${u.avatar}.png?size=256`
-          : `https://cdn.discordapp.com/embed/avatars/${parseInt(u.discriminator) % 5}.png`;
-        document.getElementById("avatar").src = avatar;
-        document.getElementById("username").textContent = u.username;
-        document.getElementById("status").textContent = "Status: " + d.discord_status;
-      } else {
-        document.getElementById("status").textContent = "Gagal memuat data 😢";
+        const sc = d.discord_status || 'offline';
+
+        /* avatar */
+        const src = u.avatar
+          ? `https://cdn.discordapp.com/avatars/${u.id}/${u.avatar}.png?size=128`
+          : `https://cdn.discordapp.com/embed/avatars/${parseInt(u.discriminator || '0') % 5}.png`;
+        const avEl = document.getElementById('avatar');
+        if (avEl && !avEl.src.includes('cdn.discord')) avEl.src = src;
+
+        /* username */
+        const nameEl = document.getElementById('username');
+        if (nameEl) nameEl.textContent = u.global_name || u.username;
+
+        const discordUserEl = document.getElementById('discordUser');
+        if (discordUserEl) discordUserEl.textContent = u.username;
+
+        /* status dots */
+        ['statusDot', 'statusDot2'].forEach(id => {
+          const el = document.getElementById(id);
+          if (el) {
+            el.className = el.className.replace(/\b(online|idle|dnd|offline)\b/g, '').trim();
+            el.classList.add(sc);
+          }
+        });
+
+        /* status text */
+        const statusEl = document.getElementById('discordStatus');
+        if (statusEl) statusEl.textContent = 'Discord · ' + (STATUS_LABEL[sc] || sc);
+
+        /* activity */
+        const activity = (d.activities || []).find(a => a.type !== 4);
+        const actEl = document.getElementById('activityLine');
+        if (actEl) {
+          actEl.textContent = activity
+            ? activity.name + (activity.details ? ' — ' + activity.details : '')
+            : STATUS_LABEL[sc] || '—';
+        }
+
+      } catch (err) {
+        const statusEl = document.getElementById('discordStatus');
+        if (statusEl) statusEl.textContent = 'Discord · Offline';
       }
     }
     loadDiscord();
+    setInterval(loadDiscord, 30000);
+
+    /* ═══════════════════════════════════════════
+       COPY EMAIL
+    ═══════════════════════════════════════════ */
+    function copyEmail() {
+      navigator.clipboard.writeText('yukiikazunomiya@gmail.com').then(() => {
+        showToast('Email copied to clipboard');
+      }).catch(() => {
+        showToast('Failed to copy');
+      });
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      toast.textContent = msg;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 2000);
+    }
+
+    /* ═══════════════════════════════════════════
+       CUSTOM CURSOR
+    ═══════════════════════════════════════════ */
+    (() => {
+      const dot = document.getElementById('cursorDot');
+      if (!dot || !matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+
+      let mouseX = 0, mouseY = 0;
+      let dotX = 0, dotY = 0;
+
+      document.addEventListener('mousemove', e => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        if (!dot.classList.contains('visible')) dot.classList.add('visible');
+      });
+
+      document.addEventListener('mouseleave', () => {
+        dot.classList.remove('visible');
+      });
+
+      function animate() {
+        dotX += (mouseX - dotX) * 0.15;
+        dotY += (mouseY - dotY) * 0.15;
+        dot.style.left = dotX + 'px';
+        dot.style.top = dotY + 'px';
+        requestAnimationFrame(animate);
+      }
+      animate();
+
+      /* hover detection */
+      const hoverTargets = 'a, button, .project-card, .stack-tag, .link-item, .nav-link';
+      document.addEventListener('mouseover', e => {
+        if (e.target.closest(hoverTargets)) dot.classList.add('hovering');
+      });
+      document.addEventListener('mouseout', e => {
+        if (e.target.closest(hoverTargets)) dot.classList.remove('hovering');
+      });
+    })();
+
+    /* ═══════════════════════════════════════════
+       PROJECT CARD SPOTLIGHT
+    ═══════════════════════════════════════════ */
+    document.querySelectorAll('.project-card').forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const rect = card.getBoundingClientRect();
+        card.style.setProperty('--mouse-x', (e.clientX - rect.left) + 'px');
+        card.style.setProperty('--mouse-y', (e.clientY - rect.top) + 'px');
+      });
+    });
+
+    /* ═══════════════════════════════════════════
+       COMMAND PALETTE
+    ═══════════════════════════════════════════ */
+    const cmdOverlay = document.getElementById('cmdOverlay');
+    const cmdInput = document.getElementById('cmdInput');
+    const cmdList = document.getElementById('cmdList');
+    let cmdActiveIndex = -1;
+
+    function openCmd() {
+      cmdOverlay.classList.add('open');
+      cmdInput.value = '';
+      filterCmd('');
+      setTimeout(() => cmdInput.focus(), 50);
+      cmdActiveIndex = -1;
+    }
+    function closeCmd() {
+      cmdOverlay.classList.remove('open');
+      cmdActiveIndex = -1;
+    }
+
+    /* keyboard shortcut */
+    document.addEventListener('keydown', e => {
+      if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+        e.preventDefault();
+        cmdOverlay.classList.contains('open') ? closeCmd() : openCmd();
+      }
+      if (e.key === 'Escape' && cmdOverlay.classList.contains('open')) {
+        closeCmd();
+      }
+    });
+
+    /* close on overlay click */
+    cmdOverlay.addEventListener('click', e => {
+      if (e.target === cmdOverlay) closeCmd();
+    });
+
+    /* filter */
+    cmdInput.addEventListener('input', () => filterCmd(cmdInput.value));
+
+    function filterCmd(query) {
+      const items = cmdList.querySelectorAll('.cmd-item');
+      const labels = cmdList.querySelectorAll('.cmd-group-label');
+      const q = query.toLowerCase().trim();
+
+      items.forEach(item => {
+        const text = item.textContent.toLowerCase();
+        item.style.display = (!q || text.includes(q)) ? 'flex' : 'none';
+      });
+
+      /* hide empty group labels */
+      labels.forEach(label => {
+        let next = label.nextElementSibling;
+        let hasVisible = false;
+        while (next && !next.classList.contains('cmd-group-label')) {
+          if (next.style.display !== 'none') hasVisible = true;
+          next = next.nextElementSibling;
+        }
+        label.style.display = hasVisible ? 'block' : 'none';
+      });
+
+      cmdActiveIndex = -1;
+      updateCmdActive();
+    }
+
+    /* keyboard nav in palette */
+    cmdInput.addEventListener('keydown', e => {
+      const visible = [...cmdList.querySelectorAll('.cmd-item')].filter(i => i.style.display !== 'none');
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        cmdActiveIndex = Math.min(cmdActiveIndex + 1, visible.length - 1);
+        updateCmdActive(visible);
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        cmdActiveIndex = Math.max(cmdActiveIndex - 1, 0);
+        updateCmdActive(visible);
+      } else if (e.key === 'Enter') {
+        e.preventDefault();
+        if (cmdActiveIndex >= 0 && visible[cmdActiveIndex]) {
+          executeCmd(visible[cmdActiveIndex]);
+        }
+      }
+    });
+
+    function updateCmdActive(visible) {
+      if (!visible) visible = [...cmdList.querySelectorAll('.cmd-item')].filter(i => i.style.display !== 'none');
+      cmdList.querySelectorAll('.cmd-item').forEach(i => i.classList.remove('active'));
+      if (cmdActiveIndex >= 0 && visible[cmdActiveIndex]) {
+        visible[cmdActiveIndex].classList.add('active');
+        visible[cmdActiveIndex].scrollIntoView({ block: 'nearest' });
+      }
+    }
+
+    /* click on items */
+    cmdList.addEventListener('click', e => {
+      const item = e.target.closest('.cmd-item');
+      if (item) executeCmd(item);
+    });
+
+    function executeCmd(item) {
+      const action = item.dataset.action;
+      closeCmd();
+
+      switch (action) {
+        case 'scroll': {
+          const target = document.querySelector(item.dataset.target);
+          if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          break;
+        }
+        case 'copy-email':
+          copyEmail();
+          break;
+        case 'open-url':
+          window.open(item.dataset.url, '_blank', 'noopener');
+          break;
+      }
+    }
+
+    /* ═══════════════════════════════════════════
+       NAV ACTIVE STATE
+    ═══════════════════════════════════════════ */
+    (() => {
+      const sections = document.querySelectorAll('section[id]');
+      const navLinks = document.querySelectorAll('.nav-link[href^="#"]');
+
+      const navIO = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            navLinks.forEach(link => link.classList.remove('active'));
+            const activeLink = document.querySelector(`.nav-link[href="#${entry.target.id}"]`);
+            if (activeLink) activeLink.classList.add('active');
+          }
+        });
+      }, { threshold: 0.2, rootMargin: '-80px 0px -50% 0px' });
+
+      sections.forEach(s => navIO.observe(s));
+    })();
+
+    /* ═══════════════════════════════════════════
+       THEME TOGGLE
+    ═══════════════════════════════════════════ */
+    (() => {
+      const toggle = document.getElementById('themeToggle');
+      const html = document.documentElement;
+
+      // load saved preference
+      const saved = localStorage.getItem('theme');
+      if (saved) {
+        html.setAttribute('data-theme', saved);
+      } else if (window.matchMedia('(prefers-color-scheme: light)').matches) {
+        html.setAttribute('data-theme', 'light');
+      }
+
+      toggle.addEventListener('click', () => {
+        const current = html.getAttribute('data-theme');
+        const next = current === 'light' ? 'dark' : 'light';
+        html.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+      });
+    })();
   </script>
 </body>
 </html>
