@@ -748,7 +748,7 @@
       <div class="nav-left">
         <span class="nav-logo">yukii.dev</span>
         <span class="nav-sep"></span>
-        <span class="nav-badge">v1</span>
+        <span class="nav-badge">><</span>
       </div>
       <div class="nav-right">
         <a href="#about"    class="nav-link">About</a>
@@ -1299,14 +1299,14 @@
 
       async function fetchCount(increment = false) {
         try {
-          const action = increment ? '/up' : '';
-          const res = await fetch(`https://api.counterapi.dev/v1/${NAMESPACE}/${KEY}${action}?t=${Date.now()}`, {
+          const action = increment ? 'hit' : 'get';
+          const res = await fetch(`https://abacus.jasoncameron.dev/${action}/${NAMESPACE}/${KEY}?t=${Date.now()}`, {
             cache: 'no-store'
           });
           if (!res.ok) return;
           const data = await res.json();
-          if (data && typeof data.count === 'number') {
-            updateCounterDisplay(data.count);
+          if (data && typeof data.value === 'number') {
+            updateCounterDisplay(data.value);
             
             if (isFirstLoad) {
               if (increment) {
