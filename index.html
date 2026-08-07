@@ -1300,7 +1300,9 @@
       async function fetchCount(increment = false) {
         try {
           const action = increment ? '/up' : '';
-          const res = await fetch(`https://api.counterapi.dev/v1/${NAMESPACE}/${KEY}${action}`);
+          const res = await fetch(`https://api.counterapi.dev/v1/${NAMESPACE}/${KEY}${action}?t=${Date.now()}`, {
+            cache: 'no-store'
+          });
           if (!res.ok) return;
           const data = await res.json();
           if (data && typeof data.count === 'number') {
