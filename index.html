@@ -729,6 +729,168 @@
       .stagger > * { opacity: 1; transform: none; transition: none; }
       * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
     }
+
+    /* ─────────────────────────────────
+       DISCORD PRESENCE CARD (SPOTIFY & GAMING)
+    ───────────────────────────────── */
+    .discord-card {
+      margin-top: 20px;
+      padding: 14px 16px;
+      border: 1.5px solid var(--border);
+      border-radius: var(--r);
+      background: var(--bg-card);
+      transition: all var(--dur) var(--ease);
+      position: relative;
+      overflow: hidden;
+    }
+    .discord-card:hover {
+      border-color: var(--border-h);
+      background: var(--bg-hover);
+    }
+    .dc-inner {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .dc-art-wrap {
+      position: relative;
+      flex-shrink: 0;
+      width: 62px;
+      height: 62px;
+    }
+    .dc-art {
+      width: 62px;
+      height: 62px;
+      border-radius: var(--r-sm);
+      object-fit: cover;
+      display: block;
+      border: 1px solid var(--border-h);
+      background: var(--bg-raised);
+    }
+    .dc-art-badge {
+      position: absolute;
+      bottom: -3px;
+      right: -3px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--bg-card);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid var(--bg-card);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    }
+    .dc-art-badge svg {
+      width: 13px;
+      height: 13px;
+      display: block;
+    }
+    .dc-details {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .dc-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+    .dc-type {
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--text-3);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      letter-spacing: 0.02em;
+    }
+    .dc-type svg {
+      width: 13px;
+      height: 13px;
+      flex-shrink: 0;
+    }
+    
+    .dc-title-link {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      min-width: 0;
+    }
+    .dc-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.01em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      line-height: 1.3;
+    }
+    .dc-title-link:hover .dc-title {
+      color: #1DB954;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+    .dc-subtitle {
+      font-size: 12.5px;
+      color: var(--text-2);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .dc-progress-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 4px;
+    }
+    .dc-time {
+      font-family: var(--mono);
+      font-size: 10.5px;
+      color: var(--text-3);
+      min-width: 32px;
+    }
+    .dc-time:last-child {
+      text-align: right;
+    }
+    .dc-bar-track {
+      flex: 1;
+      height: 4px;
+      background: var(--border-h);
+      border-radius: 99px;
+      overflow: hidden;
+      position: relative;
+    }
+    .dc-bar-fill {
+      height: 100%;
+      width: 0%;
+      background: #1DB954;
+      border-radius: 99px;
+      transition: width 0.3s linear;
+    }
+    [data-theme="light"] .dc-bar-fill {
+      background: #1aa34a;
+    }
+    .dc-elapsed-row {
+      margin-top: 4px;
+    }
+    .dc-elapsed-text {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--text-3);
+    }
+    @media (max-width: 480px) {
+      .dc-inner { gap: 12px; }
+      .dc-art-wrap, .dc-art { width: 50px; height: 50px; }
+      .dc-title { font-size: 13px; }
+      .dc-subtitle { font-size: 11.5px; }
+    }
+
   </style>
 </head>
 <body>
@@ -807,6 +969,40 @@
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             Copy email
           </button>
+        </div>
+
+
+        <!-- DISCORD PRESENCE CARD (SPOTIFY & GAMING) -->
+        <div class="discord-card" id="discordCard" style="display: none;">
+          <div class="dc-inner">
+            <div class="dc-art-wrap">
+              <img id="dcArt" src="" alt="Presence Artwork" class="dc-art" />
+              <div id="dcArtBadge" class="dc-art-badge"></div>
+            </div>
+            <div class="dc-details">
+              <div class="dc-header">
+                <span class="dc-type" id="dcType"></span>
+              </div>
+              <a id="dcTitleLink" href="#" target="_blank" rel="noopener" class="dc-title-link">
+                <div class="dc-title" id="dcTitle">—</div>
+              </a>
+              <div class="dc-subtitle" id="dcSubtitle">—</div>
+              
+              <!-- Progress Bar for Spotify / Timed activities -->
+              <div class="dc-progress-row" id="dcProgressRow" style="display: none;">
+                <span class="dc-time" id="dcCurrentTime">00:00</span>
+                <div class="dc-bar-track">
+                  <div class="dc-bar-fill" id="dcBarFill"></div>
+                </div>
+                <span class="dc-time" id="dcTotalTime">00:00</span>
+              </div>
+
+              <!-- Elapsed Time for Games / Other Activities -->
+              <div class="dc-elapsed-row" id="dcElapsedRow" style="display: none;">
+                <span class="dc-elapsed-text" id="dcElapsedText">⏱️ 00:00 elapsed</span>
+              </div>
+            </div>
+          </div>
         </div>
 
         <!-- NOW strip + VISIT strip (stacked, share border) -->
@@ -984,11 +1180,8 @@
               loading="lazy"></iframe>
           </div>
           <div class="music-item">
-            <p class="music-label">
-              <span class="eq-bars"><span class="eq-bar"></span><span class="eq-bar"></span><span class="eq-bar"></span></span>
-              Now Playing
-            </p>
-           <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/20jbSiX29FDX4oQxBXyUEi?utm_source=generator&si=1d98c43b5e384de7"
+            <p class="music-label">Favorite Song</p>
+            <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/20jbSiX29FDX4oQxBXyUEi?utm_source=generator&si=1d98c43b5e384de7"
               width="100%" height="352" frameborder="0"
               allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
               loading="lazy"></iframe>
@@ -1180,32 +1373,64 @@
 
     document.getElementById('footerYear').textContent = '© ' + new Date().getFullYear();
 
-    /* ── DISCORD STATUS SVGs ── */
-    function getStatusSVG(sc, size = 10) {
-      const isDark = document.documentElement.getAttribute('data-theme') !== 'light';
-      const bg = isDark ? '#0a0a0a' : '#f5f5f5';
-      const s = size, cx = s / 2, cy = s / 2, r = s * 0.45;
-      const svgs = {
-        online: `<svg width="${s}" height="${s}" viewBox="0 0 ${s} ${s}" fill="none"><circle cx="${cx}" cy="${cy}" r="${r}" fill="#3fb950"/></svg>`,
-        idle: `<svg width="${s}" height="${s}" viewBox="0 0 ${s} ${s}" fill="none"><circle cx="${cx}" cy="${cy}" r="${r}" fill="#d29922"/><circle cx="${cx+s*0.18}" cy="${cy-s*0.15}" r="${r*0.7}" fill="${bg}"/></svg>`,
-        dnd: `<svg width="${s}" height="${s}" viewBox="0 0 ${s} ${s}" fill="none"><circle cx="${cx}" cy="${cy}" r="${r}" fill="#f85149"/><rect x="${s*0.2}" y="${cy-s*0.1}" width="${s*0.6}" height="${s*0.2}" rx="${s*0.1}" fill="${bg}"/></svg>`,
-        offline: `<svg width="${s}" height="${s}" viewBox="0 0 ${s} ${s}" fill="none"><circle cx="${cx}" cy="${cy}" r="${r*0.75}" fill="none" stroke="#555" stroke-width="${s*0.15}"/></svg>`
-      };
-      return svgs[sc] || svgs.offline;
-    }
-
-    const STATUS_LABEL = { online: 'Online', idle: 'Idle', dnd: 'Do not disturb', offline: 'Offline' };
-    let currentStatus = 'offline';
-
-    async function loadDiscord() {
+    /* ── DISCORD PRESENCE & LANYARD INTEGRATION ── */
+    (() => {
       const UID = '1383415388804747269';
-      try {
-        const res = await fetch(`https://api.lanyard.rest/v1/users/${UID}`);
-        const json = await res.json();
-        if (!json.success) return;
-        const d = json.data, u = d.discord_user;
+      let ws = null;
+      let heartbeatTimer = null;
+      let progressTimer = null;
+      let currentPresence = null;
+
+      const STATUS_LABEL = { online: 'Online', idle: 'Idle', dnd: 'Do not disturb', offline: 'Offline' };
+
+      function getStatusSVG(sc, size = 10) {
+        const isDark = document.documentElement.getAttribute('data-theme') !== 'light';
+        const bg = isDark ? '#0a0a0a' : '#f5f5f5';
+        const s = size, cx = s / 2, cy = s / 2, r = s * 0.45;
+        const svgs = {
+          online: `<svg width="${s}" height="${s}" viewBox="0 0 ${s} ${s}" fill="none"><circle cx="${cx}" cy="${cy}" r="${r}" fill="#3fb950"/></svg>`,
+          idle: `<svg width="${s}" height="${s}" viewBox="0 0 ${s} ${s}" fill="none"><circle cx="${cx}" cy="${cy}" r="${r}" fill="#d29922"/><circle cx="${cx+s*0.18}" cy="${cy-s*0.15}" r="${r*0.7}" fill="${bg}"/></svg>`,
+          dnd: `<svg width="${s}" height="${s}" viewBox="0 0 ${s} ${s}" fill="none"><circle cx="${cx}" cy="${cy}" r="${r}" fill="#f85149"/><rect x="${s*0.2}" y="${cy-s*0.1}" width="${s*0.6}" height="${s*0.2}" rx="${s*0.1}" fill="${bg}"/></svg>`,
+          offline: `<svg width="${s}" height="${s}" viewBox="0 0 ${s} ${s}" fill="none"><circle cx="${cx}" cy="${cy}" r="${r*0.75}" fill="none" stroke="#555" stroke-width="${s*0.15}"/></svg>`
+        };
+        return svgs[sc] || svgs.offline;
+      }
+
+      function formatTime(sec) {
+        const m = Math.floor(sec / 60);
+        const s = Math.floor(sec % 60);
+        return `${m < 10 ? '0' : ''}${m}:${s < 10 ? '0' : ''}${s}`;
+      }
+
+      function formatElapsed(sec) {
+        const h = Math.floor(sec / 3600);
+        const m = Math.floor((sec % 3600) / 60);
+        const s = Math.floor(sec % 60);
+        if (h > 0) {
+          return `${h}:${m < 10 ? '0' : ''}${m}:${s < 10 ? '0' : ''}${s} elapsed`;
+        }
+        return `${m < 10 ? '0' : ''}${m}:${s < 10 ? '0' : ''}${s} elapsed`;
+      }
+
+      function getAssetUrl(appId, asset) {
+        if (!asset) return null;
+        if (asset.startsWith('mp:external/')) return 'https://media.discordapp.net/external/' + asset.replace('mp:external/', '');
+        if (asset.startsWith('spotify:')) return 'https://i.scdn.co/image/' + asset.replace('spotify:', '');
+        if (asset.startsWith('http')) return asset;
+        if (appId) return `https://cdn.discordapp.com/app-assets/${appId}/${asset}.png`;
+        return null;
+      }
+
+      const spotifyIconSvg = `<svg viewBox="0 0 24 24" fill="#1DB954"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>`;
+      const gameIconSvg = `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M21 6H3c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-10 7H9v2H7v-2H5v-2h2V9h2v2h2v2zm4.5 2c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm3-3c-.83 0-1.5-.67-1.5-1.5S17.67 9 18.5 9s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>`;
+      const codeIconSvg = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>`;
+      const discordIconSvg = `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994.021-.041.001-.09-.041-.106a13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.929 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.893.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>`;
+
+      function updateUI(d) {
+        if (!d) return;
+        currentPresence = d;
+        const u = d.discord_user || {};
         const sc = d.discord_status || 'offline';
-        currentStatus = sc;
 
         const src = u.avatar
           ? `https://cdn.discordapp.com/avatars/${u.id}/${u.avatar}.png?size=128`
@@ -1228,22 +1453,245 @@
         const statusEl = document.getElementById('discordStatus');
         if (statusEl) statusEl.textContent = 'Discord · ' + (STATUS_LABEL[sc] || sc);
 
-        const activity = (d.activities || []).find(a => a.type !== 4);
-        const actEl = document.getElementById('activityLine');
-        if (actEl) {
-          if (activity) {
-            actEl.innerHTML = `<span class="now-activity-dot"></span>${activity.name}${activity.details ? ' — ' + activity.details : ''}`;
+        renderPresenceCard(d);
+      }
+
+      function renderPresenceCard(d) {
+        const card = document.getElementById('discordCard');
+        if (!card) return;
+
+        const art = document.getElementById('dcArt');
+        const badge = document.getElementById('dcArtBadge');
+        const typeLabel = document.getElementById('dcType');
+        const title = document.getElementById('dcTitle');
+        const titleLink = document.getElementById('dcTitleLink');
+        const subtitle = document.getElementById('dcSubtitle');
+        const progressRow = document.getElementById('dcProgressRow');
+        const elapsedRow = document.getElementById('dcElapsedRow');
+        
+        const actLine = document.getElementById('activityLine');
+
+        const u = d.discord_user || {};
+        const sc = d.discord_status || 'offline';
+
+        // 1. Check Spotify
+        if (d.listening_to_spotify && d.spotify) {
+          const s = d.spotify;
+          card.style.display = 'block';
+          
+          typeLabel.innerHTML = `${spotifyIconSvg} Listening to Spotify`;
+          art.src = s.album_art_url || '';
+          art.alt = s.song;
+          badge.innerHTML = spotifyIconSvg;
+          badge.style.background = 'var(--bg-card)';
+
+          title.textContent = s.song;
+          titleLink.href = s.track_id ? `https://open.spotify.com/track/${s.track_id}` : '#';
+          titleLink.style.pointerEvents = s.track_id ? 'auto' : 'none';
+
+          subtitle.textContent = `${s.artist}${s.album ? ' • ' + s.album : ''}`;
+
+          progressRow.style.display = 'flex';
+          elapsedRow.style.display = 'none';
+
+          if (actLine) actLine.innerHTML = '';
+          tickProgress();
+          return;
+        }
+
+        // 2. Check Game or Other Activities
+        const activities = (d.activities || []).filter(a => a.type !== 4);
+        const game = activities.find(a => a.type === 0 || a.type === 1 || a.type === 2 || a.type === 3) || activities[0];
+
+        if (game) {
+          card.style.display = 'block';
+          
+          const isCoding = game.name.toLowerCase().includes('code') || game.name.toLowerCase().includes('studio');
+          const isGame = game.type === 0;
+
+          if (isCoding) {
+            typeLabel.innerHTML = `${codeIconSvg} Developing · ${game.name}`;
+            badge.innerHTML = codeIconSvg;
+          } else if (isGame) {
+            typeLabel.innerHTML = `${gameIconSvg} Playing ${game.name}`;
+            badge.innerHTML = gameIconSvg;
           } else {
-            actEl.textContent = STATUS_LABEL[sc] || '—';
+            typeLabel.innerHTML = `${discordIconSvg} ${game.name}`;
+            badge.innerHTML = discordIconSvg;
+          }
+
+          let imgUrl = null;
+          if (game.assets && game.assets.large_image) {
+            imgUrl = getAssetUrl(game.application_id, game.assets.large_image);
+          }
+          if (!imgUrl && u.avatar) {
+            imgUrl = `https://cdn.discordapp.com/avatars/${u.id}/${u.avatar}.png?size=128`;
+          }
+          art.src = imgUrl || '';
+          art.alt = game.name;
+
+          title.textContent = game.name;
+          titleLink.href = '#';
+          titleLink.style.pointerEvents = 'none';
+
+          const subParts = [];
+          if (game.details) subParts.push(game.details);
+          if (game.state) subParts.push(game.state);
+          subtitle.textContent = subParts.join(' — ') || 'In game';
+
+          if (game.timestamps && game.timestamps.end) {
+            progressRow.style.display = 'flex';
+            elapsedRow.style.display = 'none';
+          } else if (game.timestamps && game.timestamps.start) {
+            progressRow.style.display = 'none';
+            elapsedRow.style.display = 'block';
+          } else {
+            progressRow.style.display = 'none';
+            elapsedRow.style.display = 'none';
+          }
+
+          if (actLine) {
+            actLine.innerHTML = `<span class="now-activity-dot"></span>${game.name}${game.details ? ' — ' + game.details : ''}`;
+          }
+          tickProgress();
+          return;
+        }
+
+        // 3. Custom status or General online status
+        const customStatus = (d.activities || []).find(a => a.type === 4);
+        if (customStatus || sc !== 'offline') {
+          card.style.display = 'block';
+          
+          typeLabel.innerHTML = `${discordIconSvg} Discord Presence`;
+          art.src = u.avatar ? `https://cdn.discordapp.com/avatars/${u.id}/${u.avatar}.png?size=128` : '';
+          art.alt = u.username || 'Discord';
+          badge.innerHTML = getStatusSVG(sc, 12);
+
+          title.textContent = u.global_name || u.username || 'Yukiel';
+          titleLink.href = `https://discord.com/users/${UID}`;
+          titleLink.style.pointerEvents = 'auto';
+
+          subtitle.textContent = customStatus && customStatus.state ? `"${customStatus.state}"` : `${STATUS_LABEL[sc] || sc} on Discord`;
+          progressRow.style.display = 'none';
+          elapsedRow.style.display = 'none';
+
+          if (actLine) actLine.textContent = STATUS_LABEL[sc] || '—';
+        } else {
+          card.style.display = 'none';
+          if (actLine) actLine.textContent = 'Offline';
+        }
+      }
+
+      function tickProgress() {
+        if (!currentPresence) return;
+        const d = currentPresence;
+
+        if (d.listening_to_spotify && d.spotify && d.spotify.timestamps) {
+          const now = Date.now();
+          const start = d.spotify.timestamps.start;
+          const end = d.spotify.timestamps.end;
+          const currentSec = Math.max(0, Math.floor((now - start) / 1000));
+          const totalSec = Math.max(0, Math.floor((end - start) / 1000));
+          const percent = Math.min(100, Math.max(0, ((now - start) / (end - start)) * 100));
+
+          const curEl = document.getElementById('dcCurrentTime');
+          const totEl = document.getElementById('dcTotalTime');
+          const fillEl = document.getElementById('dcBarFill');
+
+          if (curEl) curEl.textContent = formatTime(currentSec);
+          if (totEl) totEl.textContent = formatTime(totalSec);
+          if (fillEl) fillEl.style.width = `${percent}%`;
+          return;
+        }
+
+        const activities = (d.activities || []).filter(a => a.type !== 4);
+        const act = activities[0];
+        if (act && act.timestamps) {
+          if (act.timestamps.start && !act.timestamps.end) {
+            const elapsedSec = Math.max(0, Math.floor((Date.now() - act.timestamps.start) / 1000));
+            const elText = document.getElementById('dcElapsedText');
+            if (elText) elText.textContent = `⏱️ ${formatElapsed(elapsedSec)}`;
+          } else if (act.timestamps.start && act.timestamps.end) {
+            const now = Date.now();
+            const start = act.timestamps.start;
+            const end = act.timestamps.end;
+            const currentSec = Math.max(0, Math.floor((now - start) / 1000));
+            const totalSec = Math.max(0, Math.floor((end - start) / 1000));
+            const percent = Math.min(100, Math.max(0, ((now - start) / (end - start)) * 100));
+
+            const curEl = document.getElementById('dcCurrentTime');
+            const totEl = document.getElementById('dcTotalTime');
+            const fillEl = document.getElementById('dcBarFill');
+
+            if (curEl) curEl.textContent = formatTime(currentSec);
+            if (totEl) totEl.textContent = formatTime(totalSec);
+            if (fillEl) fillEl.style.width = `${percent}%`;
           }
         }
-      } catch (err) {
-        const statusEl = document.getElementById('discordStatus');
-        if (statusEl) statusEl.textContent = 'Discord · Offline';
       }
-    }
-    loadDiscord();
-    setInterval(loadDiscord, 30000);
+
+      if (progressTimer) clearInterval(progressTimer);
+      progressTimer = setInterval(tickProgress, 1000);
+
+      function connectLanyard() {
+        try {
+          if (ws) ws.close();
+          ws = new WebSocket('wss://api.lanyard.rest/socket');
+
+          ws.onopen = () => {};
+
+          ws.onmessage = (event) => {
+            try {
+              const msg = JSON.parse(event.data);
+              const { op, d, t } = msg;
+
+              if (op === 1) {
+                const hbInterval = d.heartbeat_interval;
+                if (heartbeatTimer) clearInterval(heartbeatTimer);
+                heartbeatTimer = setInterval(() => {
+                  if (ws && ws.readyState === WebSocket.OPEN) {
+                    ws.send(JSON.stringify({ op: 3 }));
+                  }
+                }, hbInterval);
+
+                ws.send(JSON.stringify({
+                  op: 2,
+                  d: { subscribe_to_id: UID }
+                }));
+              } else if (op === 0) {
+                if (t === 'INIT_STATE' || t === 'PRESENCE_UPDATE') {
+                  updateUI(d);
+                }
+              }
+            } catch (err) {
+              console.error('Lanyard WS parse error', err);
+            }
+          };
+
+          ws.onerror = () => {
+            fetchRestFallback();
+          };
+
+          ws.onclose = () => {
+            if (heartbeatTimer) clearInterval(heartbeatTimer);
+            setTimeout(connectLanyard, 5000);
+          };
+        } catch (e) {
+          fetchRestFallback();
+        }
+      }
+
+      async function fetchRestFallback() {
+        try {
+          const res = await fetch(`https://api.lanyard.rest/v1/users/${UID}`);
+          const json = await res.json();
+          if (json.success) updateUI(json.data);
+        } catch (err) {}
+      }
+
+      connectLanyard();
+      setInterval(fetchRestFallback, 15000);
+    })();
 
     /* ── VISIT COUNTER (REAL-TIME GLOBAL) ── */
     (() => {
